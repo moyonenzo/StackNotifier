@@ -27,7 +27,10 @@ class Notifier:
     def MoveNotifications(self):
         i = 0
         for roots in self.windowsOnScreen:
-            roots.geometry(f"300x100+20+{900-(115*(len(self.windowsOnScreen)-i))}")
+            if self.side == "BOTTOM":
+                roots.geometry(f"300x100+20+{900-(115*(len(self.windowsOnScreen)-i))}")
+            else:
+                roots.geometry(f"300x100+20+{20+(115*(len(self.windowsOnScreen)-i))}")
             i = i+1
 
     @run_in_background
@@ -35,8 +38,11 @@ class Notifier:
         self.MoveNotifications()
 
         root = Tk()
-        root.geometry(f"300x100+20+900")
-            #root.geometry(f"300x100+20+{900-(115*(current_index))}")
+        if self.side == "BOTTOM":
+            root.geometry(f"300x100+20+900")
+        else:
+            root.geometry(f"300x100+20+20")
+
         root['bg'] = "#2a2a2a"
         root.wm_attributes("-topmost", True)
         root.overrideredirect(True)
@@ -139,7 +145,7 @@ class RoundedNotifier:
 
             self.create_good_rectangle(canvas, 0, 0, 300, 100, 25, 100, '#2a2a2a')
             canvas.create_text(149, 30, text= title,fill="white",font=('Helvetica 15 bold'))
-            canvas.create_text(149, 60, text= description,fill="white",font=('Helvetica 12 bold'))
+            canvas.create_text(149, 60, text= description,fill="white",font=('Helvetica 8 bold'))
 
             def fade():
                 alpha = root.attributes("-alpha")
