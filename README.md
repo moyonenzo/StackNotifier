@@ -1,6 +1,6 @@
 # StackNotifier
 
-### USAGE
+### USAGE ( `WINDOWS 10/11 ONLY` )
 
 > 1. IMPORTATION
 ```
